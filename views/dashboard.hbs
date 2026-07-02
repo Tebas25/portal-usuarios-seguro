@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Sistema A</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 40px; background-color: #f4f4f9; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .code-box { background: #2d2d2d; color: #00ff00; padding: 15px; border-radius: 5px; word-wrap: break-word; font-family: monospace;}
+        .btn-rojo { background-color: #dc3545; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 20px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Bienvenido a tu panel protegido</h2>
+        <p>Has superado la autenticación y el 2FA exitosamente.</p>
+
+        <h3>Mensaje del Sistema:</h3>
+        <p>{{ mensaje }}</p>
+
+        <h3>Trama Encriptada Generada (KMS):</h3>
+        <p><i>Este es el texto ilegible que se enviará al Sistema B de tu compañero:</i></p>
+        <div class="code-box">
+            {{ trama }}
+        </div>
+
+        <a href="/logout" class="btn-rojo">Cerrar Sesión</a>
+    </div>
+</body>
+</html>
