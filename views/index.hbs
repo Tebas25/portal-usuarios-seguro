@@ -5,14 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema A - Portal</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 50px; text-align: center; }
-        .btn { padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; }
+        /* Variables de color basadas en el Sistema B */
+        :root {
+            --bg-principal: #1a1c23; /* Fondo oscuro */
+            --bg-tarjeta: #242731;   /* Fondo de la caja */
+            --texto-claro: #f0f0f0;
+            --texto-secundario: #9ca3af;
+            --acento-naranja: #ffb443; /* Botones y detalles */
+            --acento-hover: #e5a23c;
+            --borde: #333845;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            background-color: var(--bg-principal);
+            color: var(--texto-claro);
+            margin: 0; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Ocupa toda la pantalla para centrar verticalmente */
+        }
+
+        /* Contenedor central estilo tarjeta */
+        .login-card {
+            background-color: var(--bg-tarjeta);
+            padding: 50px 40px;
+            border-radius: 12px;
+            border: 1px solid var(--borde);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 420px;
+            width: 100%;
+        }
+
+        /* Detalle del punto naranja brillante (tomado del header de tu compañero) */
+        .punto-estado {
+            height: 12px;
+            width: 12px;
+            background-color: var(--acento-naranja);
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 12px;
+            box-shadow: 0 0 10px var(--acento-naranja);
+        }
+
+        h1 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        p {
+            color: var(--texto-secundario);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        /* Botón modernizado */
+        .btn { 
+            display: inline-block; 
+            padding: 14px 24px; 
+            background-color: var(--acento-naranja); 
+            color: #111; /* Texto oscuro para contrastar con el naranja */
+            text-decoration: none; 
+            border-radius: 6px; 
+            font-weight: 700;
+            font-size: 15px;
+            width: 80%;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--acento-hover);
+        }
+
+        .btn:active {
+            transform: scale(0.98); /* Pequeño efecto al hacer clic */
+        }
     </style>
 </head>
 <body>
-    <h1>{{ mensaje }}</h1>
-    <p>Portal del Usuario para visualización de rutas.</p>
-    
-    <a href="/mis-rutas" class="btn">Iniciar Sesión con Keycloak</a>
+    <div class="login-card">
+        <h1><span class="punto-estado"></span>{{ mensaje }}</h1>
+        <p>Portal de Usuario. Inicia sesión en la plataforma unificada para acceder a las herramientas operativas.</p>
+        
+        <a href="/mis-rutas" class="btn">Iniciar Sesión con Keycloak</a>
+    </div>
 </body>
 </html>

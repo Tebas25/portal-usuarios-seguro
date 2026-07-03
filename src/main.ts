@@ -17,6 +17,7 @@ async function bootstrap() {
   // 2. Iniciamos el motor de sesiones (Obligatorio para que Keycloak recuerde quién eres)
   const memoryStore = new session.MemoryStore();
   app.use(session({
+    name: 'cookie-portal-usuario',
     secret: 'secreto-super-seguro-transporte',
     resave: false,
     saveUninitialized: true,

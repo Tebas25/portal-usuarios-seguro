@@ -12,7 +12,7 @@ export class AppController {
   @Get()
   @Render('index')
   root() {
-    return { mensaje: '¡Bienvenido al Sistema A (Portal de Transporte)!' };
+    return { mensaje: '¡Bienvenido al Portal de Transporte!' };
   }
 
   @Get('/mis-rutas')
