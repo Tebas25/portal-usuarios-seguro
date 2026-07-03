@@ -31,25 +31,28 @@ export class AppController {
 
     try {
       // 3. Enviamos SOLO la trama segura al Sistema B
-      // (Comentado temporalmente hasta que levantemos el Sistema B)
-      /*
-      const respuestaB = await axios.post(process.env.SISTEMA_B_URL, {
-        payloadEncriptado: tramaSegura
+      const respuestaB = await axios.post(process.env.SISTEMA_B_URL as string, {
+        payloadEncriptado: tramaSegura,
       });
-      
-      // Aquí iría el parser del CSV de 10 campos que devolverá B
-      const rutasProcesadas = procesarCSV(respuestaB.data);
-      */
 
-      // Retorno temporal (Mock) para que la vista no falle
+      // Asumimos que B responde { payloadEncriptado: string }, cifrado con la
+      // misma llave de Vault. Confirmar contrato con Sistema B
+      const rutasDescifradas = await this.kmsService.desencriptarPayload(
+        respuestaB.data.payloadEncriptado,
+      );
+
       return { 
-        mensaje: 'Petición encriptada y enviada a B', 
-        trama: tramaSegura 
+        mensaje: 'Petición encriptada, enviada a B y respuesta descifrada correctamente',
+        trama: tramaSegura,
+        rutas: rutasDescifradas,
       };
 
-    } catch (error) {
-      this.logger.error('Error comunicándose con el Sistema B', error);
-      return { mensaje: 'Error de comunicación' };
+    } catch (error: any) {
+      this.logger.error('Error comunicándose con el Sistema B', error?.message || error);
+      return {
+        mensaje: 'Trama cifrada generada correctamente. Sistema B no respondió (debe estar levantado).',
+        trama: tramaSegura,
+      };
     }
   }
 }
