@@ -8,6 +8,8 @@
         .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
         .code-box { background: #2d2d2d; color: #00ff00; padding: 15px; border-radius: 5px; word-wrap: break-word; font-family: monospace;}
         .btn-rojo { background-color: #dc3545; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 20px;}
+        .code-box { max-width: 100%; overflow-x: auto; overflow-y: hidden; border: 1px solid #ccc; padding: 10px; }
+        .code-box pre { margin: 0; white-space: pre; }
     </style>
 </head>
 <body>
@@ -23,6 +25,13 @@
         <div class="code-box">
             {{ trama }}
         </div>
+
+        {{#if rutas}}
+        <h3>CSV recibido de Sistema B (descifrado):</h3>
+        <div class="code-box">
+            <pre>{{ rutas.csv }}</pre>
+        </div>
+        {{/if}}
 
         <a href="/logout" class="btn-rojo">Cerrar Sesión</a>
     </div>
