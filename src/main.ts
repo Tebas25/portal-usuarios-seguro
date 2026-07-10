@@ -1,3 +1,6 @@
+import * as dotenv from 'dotenv';
+   dotenv.config();
+
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
@@ -27,7 +30,7 @@ async function bootstrap() {
   // 3. Conectamos con tu servidor Keycloak usando las variables del .env
   const keycloak = new Keycloak({ store: memoryStore }, {
     realm: process.env.KEYCLOAK_REALM,
-    "auth-server-url": "http://localhost:8080", // URL base de Keycloak
+    "auth-server-url": process.env.KEYCLOAK_URL, 
     resource: process.env.KEYCLOAK_CLIENT_ID,
     credentials: {
       secret: process.env.KEYCLOAK_CLIENT_SECRET
